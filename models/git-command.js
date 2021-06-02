@@ -15,20 +15,21 @@ class GitCommand {
             For assignment #1:
             Create logic here and run unit testing.
         */
-        let directory = this.working_directory.new_changes;
-        let count = 0;
-        let url = [];
-        for(let key in directory) {
-            count++;
-            url.push(key);
+            let directory = this.working_directory.new_changes;
+            let count = 0;
+            let url = [];
+            for(let key in directory) {
+                count++;
+                url.push(key);
+            }
+            if(count > 1) {
+                return `You have ${count} change/s.\n${url[0]}\n${url[1]}`;       
+            }
+            else if(count === 1) {
+                return `You have ${count} change/s.\n${url[0]}`;
+            }
+            return `You have ${count} change/s.\n`;
         }
-        if(count > 1) {
-            return `You have ${count} change/s.\n${url[0]}\n${url[1]}`;       
-        }
-        else if(count === 1) {
-            return `You have ${count} change/s.\n${url[0]}`;
-        }
-        return `You have ${count} change/s.\n`;
     }
 
     //Command: git add <filename/file directory/wildcard> 
@@ -44,12 +45,6 @@ class GitCommand {
             Create logic here and run unit testing.
             Don't forget to uncomment the unit tests.
         */
-        else if(path_file === ".") {
-            this.working_directory.new_changes = this.local_repository;
-        }
-        else if(path_file === "*") {
-            
-        }
         else{
             return `Failed to add ${path_file}! File is not modified or missing.`;
         }
